@@ -14,12 +14,12 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         //нахожу MaterialToolbar
-        val toolbar = findViewById<MaterialToolbar>(R.id.toolbar)
-        setSupportActionBar(toolbar)
+      /*  val toolbar = findViewById<MaterialToolbar>(R.id.materialToolbar)
+        setSupportActionBar(toolbar)*/
 
         /**Настройка toolbar, чтобы она включала кнопку Up, и отображала, к какому экрану перешли*/
 
-        //1 способ
+       /* //1 способ
           /*получение ссылки на navigation controller из navigation host*/
           val navHostFragment =
               supportFragmentManager.findFragmentById(R.id.fragment_container_view) as NavHostFragment
@@ -37,7 +37,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onSupportNavigateUp(): Boolean {
         val controller = findNavController(R.id.fragment_container_view)
-        return controller.navigateUp() || super.onSupportNavigateUp()*/
+        return controller.navigateUp() || super.onSupportNavigateUp()*/*/
     }
 
 }
