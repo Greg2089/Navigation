@@ -6,9 +6,9 @@
     <group>
         <item
             android:id="@+id/itemOne"
-            android:title="Item" />
+            android:title="@string/fragment_one" />
         <item
             android:id="@+id/itemTwo"
-            android:title="Item" />
+            android:title="@string/fragment_two" />
     </group>
 </menu>
