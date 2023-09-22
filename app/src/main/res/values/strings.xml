@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Navigation</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="fragment_main">MainFragment</string>
+    <string name="fragment_two">FragmentTwo</string>
+    <string name="fragment_one">FragmentOne</string>
 </resources>
