@@ -1,43 +1,38 @@
-package com.example.navigation
-
-import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import androidx.navigation.NavController
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import com.google.android.material.appbar.MaterialToolbar
+import com.example.navigation.R
+import com.example.navigation.databinding.ActivityMainBinding
+
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var conf: AppBarConfiguration
+    private lateinit var navController: NavController
+    private lateinit var binding: ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        //нахожу MaterialToolbar
-        val toolbar = findViewById<MaterialToolbar>(R.id.toolbar)
-        setSupportActionBar(toolbar)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        setSupportActionBar(binding.actionBar.materialToolbar)
+        navController = findNavController(R.id.fragmentContainerView)
+        conf = AppBarConfiguration(
+            setOf(
+                R.id.itemOne,
+                R.id.itemTwo
+            ), binding.drawer
+        )
+        setupActionBarWithNavController(navController, conf)
+        binding.navView.setupWithNavController(navController)
 
-        /**Настройка toolbar, чтобы она включала кнопку Up, и отображала, к какому экрану перешли*/
-
-        //1 способ
-          /*получение ссылки на navigation controller из navigation host*/
-          val navHostFragment =
-              supportFragmentManager.findFragmentById(R.id.fragment_container_view) as NavHostFragment
-          val navController = navHostFragment.navController
-
-          /**Создаем конфигурацию, которая связывает toolbar c navigation graph*/
-          val builder = AppBarConfiguration.Builder(navController.graph)
-          val appBarConfiguration = builder.build()
-          /** Строка отвечает за конфигурацию на toolbar*/
-          toolbar.setupWithNavController(navController, appBarConfiguration)
-
-        //2 способ
-       /* setupActionBarWithNavController(findNavController(R.id.fragment_container_view))
     }
 
     override fun onSupportNavigateUp(): Boolean {
-        val controller = findNavController(R.id.fragment_container_view)
-        return controller.navigateUp() || super.onSupportNavigateUp()*/
+        return navController.navigateUp(conf) || super.onSupportNavigateUp()
     }
-
 }
